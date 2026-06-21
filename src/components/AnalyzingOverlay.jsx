@@ -4,50 +4,41 @@ import { useEffect, useState } from 'react';
  * Full-screen overlay shown while eligibility analysis runs.
  */
 export default function AnalyzingOverlay({ step }) {
-  const steps = [
-    'Reviewing your profile',
-    'Comparing eligibility rules',
-    'Generating recommendations',
-  ];
-
-  const statusMessages = [
-    'Analyzing profile',
-    'Checking eligibility rules',
-    'Evaluating financial criteria',
-    'Comparing scholarship requirements',
-    'Generating recommendations',
-    'Finalizing results',
-  ];
-
   const [progress, setProgress] = useState(0);
-  const [statusIndex, setStatusIndex] = useState(0);
 
   useEffect(() => {
     setProgress(0);
-    setStatusIndex(0);
 
     const progressInterval = window.setInterval(() => {
       setProgress((current) => {
-        if (current >= 95) return current;
-        return Math.min(current + 1 + Math.random() * 2, 95);
+        if (current >= 99) return current;
+        return Math.min(current + 0.25 + Math.random() * 0.35, 99);
       });
-    }, 180);
-
-    const statusInterval = window.setInterval(() => {
-      setStatusIndex((current) => (current + 1) % statusMessages.length);
-    }, 3200);
+    }, 150);
 
     return () => {
       window.clearInterval(progressInterval);
-      window.clearInterval(statusInterval);
     };
   }, []);
 
   useEffect(() => {
-    if (step >= steps.length - 1) {
+    if (step >= 2) {
       setProgress(100);
     }
-  }, [step, steps.length]);
+  }, [step]);
+
+  const statusMessage =
+    progress === 100
+      ? 'Analysis complete'
+      : progress <= 20
+      ? 'Analyzing profile'
+      : progress <= 40
+      ? 'Checking eligibility rules'
+      : progress <= 60
+      ? 'Evaluating financial criteria'
+      : progress <= 85
+      ? 'Generating recommendations'
+      : 'Finalizing results';
 
   return (
     <div
@@ -65,6 +56,10 @@ export default function AnalyzingOverlay({ step }) {
           ClearPath is analyzing your profile and comparing it against scholarship eligibility criteria.
         </p>
 
+        <p className="mb-4 text-base font-medium text-slate-700">
+          {statusMessage}
+        </p>
+
         <div className="mb-4 rounded-full bg-slate-100 h-3 overflow-hidden">
           <div
             className="h-full rounded-full bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-600 transition-all duration-300"
@@ -72,41 +67,9 @@ export default function AnalyzingOverlay({ step }) {
           />
         </div>
 
-        <div className="mb-4 text-2xl font-semibold text-slate-900">
+        <div className="text-2xl font-semibold text-slate-900">
           {Math.floor(progress)}%
         </div>
-
-        <p className="mb-6 text-base font-medium text-slate-700">
-          {statusMessages[statusIndex]}
-        </p>
-
-        <ul className="space-y-2 text-left text-sm">
-          {steps.map((label, index) => {
-            const isActive = index === step;
-            const isDone = index < step;
-            return (
-              <li
-                key={label}
-                className={`flex items-center gap-2 rounded-lg px-3 py-2 ${
-                  isActive ? 'bg-primary-50 text-primary-800' : 'text-slate-500'
-                }`}
-              >
-                <span
-                  className={`flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
-                    isDone
-                      ? 'bg-green-100 text-green-700'
-                      : isActive
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-slate-100 text-slate-400'
-                  }`}
-                >
-                  {isDone ? '✓' : index + 1}
-                </span>
-                {label}
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </div>
   );
