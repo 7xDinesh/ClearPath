@@ -2,35 +2,141 @@
 
 **Your next step toward the support you qualify for.**
 
-ClearPath is an AI-powered Student Education Benefits Navigator that helps students discover scholarships, grants, fee waivers, and educational support programs they may qualify for.
+ClearPath is an AI-powered scholarship eligibility navigator that helps students discover scholarships they may qualify for through transparent, explainable, and responsible AI analysis.
 
-## Quick Start
+Built for the **USAII Global AI Hackathon 2026**, ClearPath addresses a common challenge faced by students: scholarship opportunities are often scattered across multiple sources, eligibility criteria can be difficult to understand, and many students miss opportunities they are qualified for.
 
-```bash
-# Install dependencies
-npm install
+Instead of forcing students to manually search through dozens of websites and eligibility documents, ClearPath provides a guided experience that analyzes a student's profile and highlights relevant scholarship opportunities along with clear reasoning and verification guidance.
 
-# Start development server
-npm run dev
+---
 
-# Build for production
-npm run build
+## Problem
 
-# Preview production build
-npm run preview
+Millions of students miss scholarships, grants, and educational support programs because:
+
+- Eligibility requirements are difficult to understand.
+- Information is spread across multiple websites.
+- Students do not know where to begin searching.
+- Manually comparing eligibility criteria is time-consuming.
+- Many opportunities remain undiscovered by eligible students.
+
+As a result, students often miss financial assistance that could significantly reduce the cost of education.
+
+---
+
+## Solution
+
+ClearPath acts as an intelligent scholarship discovery assistant.
+
+Students complete a short eligibility questionnaire, and the platform:
+
+1. Collects relevant profile information.
+2. Analyzes eligibility criteria.
+3. Uses AI-assisted reasoning to evaluate potential matches.
+4. Generates personalized scholarship recommendations.
+5. Explains why recommendations were made.
+6. Provides verification guidance and next steps.
+
+Most importantly, ClearPath never guarantees eligibility. Instead, it identifies opportunities that a student **may qualify for** and encourages verification through official scholarship sources.
+
+---
+
+## Features
+
+### AI-Powered Scholarship Matching
+
+ClearPath uses Google's Gemini API to analyze user profiles and generate personalized recommendation reasoning.
+
+### Explainable Recommendations
+
+Unlike traditional search tools, ClearPath explains:
+
+- Why a scholarship was recommended
+- Which eligibility factors matched
+- What information should be verified
+
+### Responsible AI Design
+
+The platform includes safeguards that:
+
+- Avoid making definitive eligibility claims
+- Encourage verification through official sources
+- Provide transparent reasoning
+- Reduce overconfidence in AI-generated recommendations
+
+### Real Scholarship Dataset
+
+ClearPath includes real scholarship opportunities instead of placeholder programs, making recommendations more meaningful and realistic.
+
+### Guided Questionnaire
+
+A simple multi-step questionnaire collects:
+
+- Academic information
+- Income information
+- Educational background
+- Location information
+- Additional eligibility factors
+
+### Professional User Experience
+
+- Responsive design
+- AI analysis loading screen
+- Progress indicators
+- Mobile-friendly interface
+- Accessible navigation
+
+### Fallback Recommendation Engine
+
+If AI services become unavailable, ClearPath automatically falls back to a rule-based recommendation system to ensure the platform remains functional.
+
+---
+
+## How It Works
+
+```text
+Student Questionnaire
+          ↓
+ Profile Generation
+          ↓
+ Eligibility Analysis
+          ↓
+ Gemini AI Reasoning
+          ↓
+ Scholarship Matching
+          ↓
+ Recommendation Results
+          ↓
+ Verification Guidance
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+---
 
-## Deploy to Vercel
+## Technology Stack
 
-1. Push this repository to GitHub
-2. Import the project in [Vercel](https://vercel.com)
-3. Vercel auto-detects Vite — no extra configuration needed
-4. Add environment variables in Vercel project settings (for live AI):
-   - `VITE_AI_API_KEY` — Your Gemini or OpenAI API key
-   - `VITE_AI_PROVIDER` — `gemini` or `openai`
-   - `VITE_GEMINI_MODEL` — optional, defaults to `gemini-2.0-flash`
+### Frontend
+
+- React
+- JavaScript
+- Vite
+- Tailwind CSS
+- HTML5
+- CSS3
+
+### AI
+
+- Google Gemini API
+
+### Deployment
+
+- Vercel
+
+### Development Tools
+
+- Git
+- GitHub
+
+---
 
 ## Project Structure
 
@@ -63,21 +169,186 @@ src/
 ├── main.jsx          # Application entry point
 └── index.css         # Tailwind CSS imports
 ```
+---
 
-## AI Integration
+## Installation
 
-The mock AI service in `src/services/aiService.js` provides rule-based matching when no API key is configured. To enable Gemini or OpenAI:
+Clone the repository:
 
-1. Create a `.env` file:
-   ```
-   VITE_AI_API_KEY=your_api_key_here
-   VITE_AI_PROVIDER=gemini
-   ```
+```bash
+git clone https://github.com/7xDinesh/ClearPath.git
+```
 
-2. Implement the API call in `callGeminiAPI()` or `callOpenAIAPI()` in `aiService.js` (already implemented)
+Move into the project directory:
 
-3. The `getRecommendations()` function automatically uses the API when both `VITE_AI_API_KEY` and `VITE_AI_PROVIDER` are set; otherwise it uses the rule-based demo engine
+```bash
+cd ClearPath
+```
 
-## Responsible AI
+Install dependencies:
 
-ClearPath never claims users definitely qualify. All results use language like "may qualify" and "based on available information." Users are always directed to verify through official sources.
+```bash
+npm install
+```
+
+Create an environment file:
+
+```env
+VITE_GEMINI_API_KEY=YOUR_API_KEY_HERE
+```
+
+Run locally:
+
+```bash
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Preview production build:
+
+```bash
+npm run preview
+```
+
+---
+
+## Environment Variables
+
+Required:
+
+```env
+VITE_GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+```
+
+Obtain an API key from:
+
+https://aistudio.google.com
+
+---
+
+## Responsible AI Principles
+
+ClearPath was designed around responsible AI practices.
+
+### Transparency
+
+Users receive explanations for recommendations.
+
+### Human Verification
+
+Recommendations are informational only and do not guarantee eligibility.
+
+### Reliability
+
+A fallback rule-based engine ensures continued operation when AI services are unavailable.
+
+### User Trust
+
+The platform prioritizes clarity and explainability over opaque AI decision-making.
+
+---
+
+## Challenges We Faced
+
+### Balancing AI and Reliability
+
+Scholarship eligibility rules can vary significantly. We needed a system that could leverage AI while remaining transparent and understandable.
+
+### Handling API Limitations
+
+AI services may experience quota limits or outages. To address this, we implemented a rule-based fallback recommendation engine.
+
+### User Experience
+
+We invested significant effort in:
+
+- Loading states
+- Progress indicators
+- Recommendation clarity
+- Mobile responsiveness
+- Accessibility
+
+---
+
+## Accomplishments
+
+- Built a complete end-to-end scholarship recommendation platform.
+- Integrated AI-assisted recommendation reasoning.
+- Implemented responsible AI safeguards.
+- Created a responsive and polished user experience.
+- Deployed a live production application.
+- Added real scholarship opportunities.
+- Developed fallback analysis capabilities.
+
+---
+
+## Future Improvements
+
+### Scholarship Expansion
+
+- Additional national scholarships
+- State-specific opportunities
+- Institution-specific programs
+
+### Opportunity Expansion
+
+- Grants
+- Fellowships
+- Internships
+- Educational benefits
+
+### AI Enhancements
+
+- Improved eligibility modeling
+- Better recommendation explanations
+- Confidence calibration
+
+### Accessibility
+
+- Multilingual support
+- Enhanced accessibility features
+- Regional customization
+
+### Student Assistance
+
+- Application guidance
+- Deadline tracking
+- Document preparation support
+
+---
+
+## Live Demo
+
+🌐 https://clearpath-scholarships.vercel.app
+
+---
+
+## Repository
+
+📂 https://github.com/7xDinesh/ClearPath
+
+---
+
+## Hackathon
+
+Built for:
+
+**USAII Global AI Hackathon 2026**
+
+Challenge Theme:
+
+**Build the Second Brain for Real Life**
+
+---
+
+## Team ClearPath
+
+Creating a more accessible path to educational opportunities through responsible AI.
+
+**ClearPath**
+*Your next step toward the support you qualify for.*
