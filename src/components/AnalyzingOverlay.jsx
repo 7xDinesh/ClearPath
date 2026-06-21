@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 /**
  * Full-screen overlay shown while eligibility analysis runs.
  */
-export default function AnalyzingOverlay({ step }) {
+export default function AnalyzingOverlay({ isComplete = false }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -22,10 +22,10 @@ export default function AnalyzingOverlay({ step }) {
   }, []);
 
   useEffect(() => {
-    if (step >= 2) {
+    if (isComplete) {
       setProgress(100);
     }
-  }, [step]);
+  }, [isComplete]);
 
   const statusMessage =
     progress === 100
