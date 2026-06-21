@@ -58,13 +58,13 @@ export const FIELD_CONFIG = {
   state: {
     label: 'State / Province',
     type: 'text',
-    placeholder: 'e.g. California',
+    placeholder: 'e.g. New Delhi',
     required: true,
   },
   country: {
     label: 'Country',
     type: 'text',
-    placeholder: 'e.g. United States',
+    placeholder: 'e.g. India',
     required: true,
   },
   degreeLevel: {
